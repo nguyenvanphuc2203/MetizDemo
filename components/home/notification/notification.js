@@ -46,12 +46,37 @@ export default class Notification extends Component {
                 <MetizContentScreen>
                     <LinearGradient colors={['#364983','#624e8c' ]} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={style.gradient}>
                         <ScrollView >
-                            <TouchableOpacity onPress={()=>{ Actions.EditProfile() }} style={style.rowitem}>
+                            <TouchableOpacity onPress={()=>{  }} style={style.rowitem}>
                                 <View style={style.itemleft}>
-                                    <Icon name="ios-paper" size={25} color="#007dff" />
+                                    <Image source={{uri:'https://i.imgur.com/DikeBdY.png'}} style={style.thumbnail} />
+                                </View>
+                                <View style={style.itemtext}>
+                                    <Text style={style.text}>Bạn vừa nhận được 100 điểm thưởng </Text>
+                                    <Text style={style.text}>28/04/1997 </Text>
+                                </View>
+                                <View style={style.itemright}>
+                                    <Icon name="ios-arrow-forward" size={30} color="#fff" />
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={()=>{  }} style={style.rowitem}>
+                                <View style={style.itemleft}>
+                                    <Image source={{uri:'https://i.imgur.com/DikeBdY.png'}} style={style.thumbnail} />
+                                </View>
+                                <View style={style.itemtext}>
+                                    <Text style={style.text}>Khuyến mãi đồng giá 45k </Text>
+                                    <Text style={style.text}>25/04/1997 </Text>
+                                </View>
+                                <View style={style.itemright}>
+                                    <Icon name="ios-arrow-forward" size={30} color="#fff" />
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={()=>{  }} style={style.rowitem}>
+                                <View style={style.itemleft}>
+                                    <Image source={{uri:'https://i.imgur.com/DikeBdY.png'}} style={style.thumbnail} />
                                 </View>
                                 <View style={style.itemtext}>
                                     <Text style={style.text}>Thông tin tài khoản </Text>
+                                    <Text style={style.text}>28/04/1997 </Text>
                                 </View>
                                 <View style={style.itemright}>
                                     <Icon name="ios-arrow-forward" size={30} color="#fff" />
@@ -77,12 +102,12 @@ const style = StyleSheet.create({
         flex:1
     },
     itemleft:{
-        flex:1,
+        flex:2,
         alignItems:'flex-start',
         justifyContent:'center'
     },
     itemtext:{
-        flex:8,
+        flex:7,
         alignItems:'flex-start',
         justifyContent:'center'
     },
@@ -92,16 +117,22 @@ const style = StyleSheet.create({
         justifyContent:'center'
     },
     rowitem:{
-        height:widthDevice/4,
+        height:widthDevice/5,
         flexDirection:'row',
         padding:10,
         marginTop:1,
+        borderBottomWidth:2,
+        borderBottomColor:'#484d7f'
     },
     textname:{
         marginTop:10,
         fontSize:widthDevice*0.04,
         color:'#fff',
         fontFamily:'SairaSemiCondensed-Bold'
+    },
+    thumbnail:{
+        width:widthDevice*0.15,
+        height:widthDevice*0.15,
     },
     text:{
         fontSize:widthDevice*0.04,
