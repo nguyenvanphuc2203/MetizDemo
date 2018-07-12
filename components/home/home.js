@@ -49,7 +49,9 @@ export default class Home extends Component {
         setTimeout(()=>{
             this.setState({loading:false})
         },2000)
-        SplashScreen.hide();
+        setTimeout(()=>{
+            SplashScreen.hide();
+        },500)
     }
     _onRefresh() {
         this.setState({refreshing: true,loading:true});
@@ -60,7 +62,6 @@ export default class Home extends Component {
         },1000)
     }
     render(){
-        console.log('render!');
         return (
             <Drawer
                 type="overlay"
@@ -86,7 +87,7 @@ export default class Home extends Component {
                             actionButtonRight={()=>{Actions.Notification()}}
                         />
                         <MetizContentScreen>
-                            {/* <LinearGradient colors={['#667b77','#8a6252','rgb(0,0,0)' ]} style={style.loginButton}> */}
+                            <LinearGradient colors={['#984eeb','#2c5776' ]} style={style.loginButton}>
                             <ScrollView 
                                 refreshControl={
                                     <RefreshControl
@@ -131,9 +132,9 @@ export default class Home extends Component {
                                             <View style={style.hottext}>
                                                 <Text style={style.text}>TIN TỨC & KHUYẾN MÃI</Text>
                                             </View>
-                                            <TouchableOpacity onPress={()=>{  }}>
-                                                <View style={style.hotall}>
-                                                <Text style={style.texthotall}> Tất cả ></Text>
+                                            <TouchableOpacity onPress={()=> {}} style={style.hotall}>
+                                                <View style={style.hotallButton}>
+                                                    <Text style={style.text}> Tất cả  </Text>
                                                 </View>
                                             </TouchableOpacity>
                                             </View>
@@ -143,7 +144,7 @@ export default class Home extends Component {
                                             <PromotionsHome/>
                                         </View>
                             </ScrollView>
-                            {/* </LinearGradient> */}
+                            </LinearGradient>
                         </MetizContentScreen>
                     </View>
             </Drawer>
@@ -218,8 +219,20 @@ const style = StyleSheet.create({
     },
     hotall:{
         flex:3,
+        backgroundColor:'transparent',
         justifyContent:'center',
         alignItems:'flex-end',
+        paddingLeft:10,
+    },
+    hotallButton:{
+        width: viewportWidth/5,
+        height: viewportWidth/17,
+        borderRadius:viewportWidth/34,
+        borderWidth:0.3,
+        justifyContent:'center',
+        alignItems:'center',
+        borderColor:'#8b8b8b',
+        backgroundColor:'#3e3c65'
     },
     hotTouch:{
         height:viewportHeight*0.04,

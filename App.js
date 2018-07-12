@@ -11,6 +11,7 @@ import {
 import Home from './components/home/home';
 import Detail from './components/home/detail/detail';
 import BookingDetail from './components/home/detail/bookingDetail';
+import PlayTrailer from './components/home/detail/playTrailer';
 import MainLogin from './components/home/user/main';
 import Register from './components/home/user/register';
 import Login from './components/home/user/login';
@@ -27,12 +28,16 @@ import TransactionHistory from './components/home/user/info/transactionHistory';
 import MemberCard from './components/home/user/info/memberCard';
 import GiftCard from './components/home/user/info/giftCard';
 import Notification from './components/home/notification/notification';
+import BookingSeat from './components/home/booking/booking';
+import BookingCombo from './components/home/booking/combo';
+import BookingCoupon from './components/home/booking/coupon';
+import BookingMemberCard from './components/home/booking/membercard';
 /**
  * transaction route config 
  */
 
 const transitionConfig = () => ({
-
+  //transition right to left
   // screenInterpolator: sceneProps => {
   //     const { layout, position, scene } = sceneProps;
   //     const { index } = scene;
@@ -47,7 +52,7 @@ const transitionConfig = () => ({
   //     return { opacity, transform: [{ translateX }] }
   // }
   
-  // transaction replace
+  // transition replace
   screenInterpolator: sceneProps => {      
     const { position, scene } = sceneProps
 
@@ -82,6 +87,10 @@ export default class App extends Component{
           <Scene key="BookingDetail"
             component={BookingDetail}
             title="BookingDetail"
+          />
+          <Scene key="PlayTrailer"
+            component={PlayTrailer}
+            title="PlayTrailer"
           />
           <Scene key="MainLogin"
             component={MainLogin}
@@ -147,6 +156,23 @@ export default class App extends Component{
           <Scene key="Notification"
             component={Notification}
             title="Notification"
+          />
+          {/* <!-- booking step --> */}
+          <Scene key="BookingSeat"
+            component={BookingSeat}
+            title="BookingSeat"
+          />
+          <Scene key="BookingCombo"
+            component={BookingCombo}
+            title="BookingCombo"
+          />
+          <Scene key="BookingCoupon"
+            component={BookingCoupon}
+            title="BookingCoupon"
+          />
+          <Scene key="BookingMemberCard"
+            component={BookingMemberCard}
+            title="BookingMemberCard"
           />
         </Scene>
     </Router>

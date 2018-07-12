@@ -220,12 +220,15 @@ const style = StyleSheet.create({
 		elevation: 3,
 	},
 	moviesname:{
+		marginTop:5,
 		fontFamily:"SairaSemiCondensed-Bold",
-		marginTop:10,
+		fontSize:widthDevice*0.035,
 		paddingLeft:widthDevice/3.5
 	},
 	moviesdes:{
-		marginTop:10,
+		marginTop:5,
+		fontFamily:"SairaSemiCondensed-Medium",
+		fontSize:widthDevice*0.035,
 		paddingLeft:widthDevice/3.5,
 		fontSize:12
 	},

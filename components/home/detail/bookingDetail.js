@@ -91,6 +91,7 @@ export default class Detail extends Component {
         return (
             <View style={styles.container}>
                 <MetizContentScreen>
+                    <LinearGradient colors={['#494576','#2c5776']} style={{flex:1}}>
                     <ScrollView 
                         refreshControl={
                             <RefreshControl
@@ -120,16 +121,16 @@ export default class Detail extends Component {
                                 <View style={styles.contentfilm}>
                                     <View style={{flex:3,alignItems:'center',justifyContent:'center'}}>
                                         <Icon name="ios-clock-outline" size={30} color="#fff" />
-                                        <Text style={styles.datetext}>Thời lượng</Text>
-                                        <Text style={styles.datetext}>120 Phút</Text>
+                                        <Text style={styles.text}>Thời lượng</Text>
+                                        <Text style={styles.text}>120 Phút</Text>
                                     </View>
                                     <View style={{flex:3,alignItems:'center',justifyContent:'center'}}>
                                         <Icon name="ios-calendar-outline" size={30} color="#fff" />
-                                        <Text style={styles.datetext}>Khởi chiếu</Text>
-                                        <Text style={styles.datetext}>30/07/2018</Text>
+                                        <Text style={styles.text}>Khởi chiếu</Text>
+                                        <Text style={styles.text}>30/07/2018</Text>
                                     </View>
                                     <View style={{flex:4,justifyContent:'center',alignItems:'center'}}>
-                                        <TouchableOpacity activeOpacity={1} onPress={()=> this._toggleModalTrailer() } style={{height:widthDevice/10,}}> 
+                                        <TouchableOpacity activeOpacity={1} onPress={()=> Actions.PlayTrailer() } style={{height:widthDevice/10,}}> 
                                             <LinearGradient colors={['#473d82','#5e4f8b' ]} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={styles.trailerButton}>
                                                 <Text style={styles.trailerButtonText}>Xem Trailer</Text>
                                                 <LinearGradient colors={['rgb(249,159,0)','rgb(219,48,105)' ]} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={styles.trailerIcon}>
@@ -154,7 +155,7 @@ export default class Detail extends Component {
                             )}
                             </LinearGradient>
                             {/* <!-- showtimes grid --> */}
-                            <LinearGradient colors={['#494576','#2c5776']}  style={styles.show}>
+                            <View  style={styles.show}>
                                 {   
                                     this.state.showtimes.length == 0 &&
                                     <View style={styles.nocontent}>
@@ -176,23 +177,11 @@ export default class Detail extends Component {
                                         }
                                     />
                                 { this.state.loading && <MetizLoading/>}
-                            </LinearGradient>
+                            </View>
                         </View>
                     </ScrollView>
+                    </LinearGradient>
                 </MetizContentScreen>
-                {/* <!-- modal trailer film --> */}
-                <Modal isVisible={this.state.modalTrailerVisible}>
-                    <View style={{justifyContent:'center',alignContent:'center',height:widthDevice/2 }}>
-                        <WebView
-                            javaScriptEnabled={true}
-                            source={{ uri:'https://www.youtube.com/embed/Wv28i3zwABI?rel=0&amp;showinfo=0'}} />
-                        <TouchableOpacity  onPress={()=> this._toggleModalTrailer() } style={{height:widthDevice/10,}}> 
-                            <LinearGradient colors={['#473d82','#5e4f8b' ]} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={styles.closetrailerButton}>
-                                <Text style={styles.trailerButtonText}>Hủy</Text>
-                            </LinearGradient>
-                        </TouchableOpacity>
-                    </View>
-                </Modal>
                 {/* <!-- share sheet --> */}
                 <ShareSheet visible={this.state.visible_sharesheet} onCancel={this.onCancelShareSheet.bind(this)}>
                     <MetizShareSheet 
@@ -211,9 +200,9 @@ const styles = StyleSheet.create({
       backgroundColor:'#0f1e2f'
     },
     headerInfo: {
-      height:widthDevice*1.47,
-      backgroundColor:'#e9ebee',
-      marginTop:(Platform.OS === 'ios') ? -70 : -50,
+        height:widthDevice*0.6,
+        backgroundColor:'#e9ebee',
+        marginTop:(Platform.OS === 'ios') ? -70 : -50,
     },
     headerGradient:{
         position:'absolute',
@@ -224,12 +213,12 @@ const styles = StyleSheet.create({
         zIndex:10
     },
     poster:{
-		width:widthDevice,
-		height:widthDevice*1.47,
-		marginBottom:23
+        width:'100%',
+        height:'100%',
+        marginBottom:23
     },
     information:{
-        height:widthDevice/2,
+        height:heightDevice/5,
         flexDirection:'column',
         position:'absolute',
         bottom:0,
@@ -278,14 +267,18 @@ const styles = StyleSheet.create({
         fontFamily:'SairaSemiCondensed-Bold'
     },
     showtimes:{
-        height:widthDevice,
+        height:heightDevice/3*2
     },
     time:{
-        flex:1.5,
-        height:widthDevice/8,
+        height:widthDevice/5.5,
         paddingVertical:8,
         flexDirection:'row',
         backgroundColor:'#333'
+    },
+    text:{
+        fontSize:widthDevice*0.04,
+        color:'#fff',
+        fontFamily:'SairaSemiCondensed-Medium'
     },
     timeItem:{
         flex:1,
@@ -318,7 +311,7 @@ const styles = StyleSheet.create({
 		backgroundColor:'rgb(248,163,17)',
 	},
     show:{
-        flex:8.5,
+        height:heightDevice/4
     },
     showitem:{
         flex:1,
@@ -329,7 +322,8 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     showtimetext:{
-        fontFamily:'SairaSemiCondensed-Medium'
+        fontFamily:'SairaSemiCondensed-Medium',
+        fontSize:widthDevice*0.04
     },
     nocontent:{
         justifyContent:'center',

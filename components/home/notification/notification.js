@@ -52,22 +52,22 @@ export default class Notification extends Component {
                                 </View>
                                 <View style={style.itemtext}>
                                     <Text style={style.text}>Bạn vừa nhận được 100 điểm thưởng </Text>
-                                    <Text style={style.text}>28/04/1997 </Text>
+                                    <Text style={style.textdate}>28/04/1997 </Text>
                                 </View>
                                 <View style={style.itemright}>
-                                    <Icon name="ios-arrow-forward" size={30} color="#fff" />
+                                    <Icon name="ios-arrow-forward" size={30} color="#d8d8d8" />
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={()=>{  }} style={style.rowitem}>
                                 <View style={style.itemleft}>
-                                    <Image source={{uri:'https://i.imgur.com/DikeBdY.png'}} style={style.thumbnail} />
+                                    <Image source={{uri:'https://i.imgur.com/3lsxy4c.png'}} style={style.thumbnail} />
                                 </View>
                                 <View style={style.itemtext}>
                                     <Text style={style.text}>Khuyến mãi đồng giá 45k </Text>
-                                    <Text style={style.text}>25/04/1997 </Text>
+                                    <Text style={style.textdate}>25/04/1997 </Text>
                                 </View>
                                 <View style={style.itemright}>
-                                    <Icon name="ios-arrow-forward" size={30} color="#fff" />
+                                    <Icon name="ios-arrow-forward" size={30} color="#d8d8d8" />
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={()=>{  }} style={style.rowitem}>
@@ -75,11 +75,11 @@ export default class Notification extends Component {
                                     <Image source={{uri:'https://i.imgur.com/DikeBdY.png'}} style={style.thumbnail} />
                                 </View>
                                 <View style={style.itemtext}>
-                                    <Text style={style.text}>Thông tin tài khoản </Text>
-                                    <Text style={style.text}>28/04/1997 </Text>
+                                    <Text style={style.text}>Khai trương rạp meti mới! </Text>
+                                    <Text style={style.textdate}>28/04/1997 </Text>
                                 </View>
                                 <View style={style.itemright}>
-                                    <Icon name="ios-arrow-forward" size={30} color="#fff" />
+                                    <Icon name="ios-arrow-forward" size={30} color="#d8d8d8" />
                                 </View>
                             </TouchableOpacity>
                         </ScrollView>
@@ -122,21 +122,23 @@ const style = StyleSheet.create({
         padding:10,
         marginTop:1,
         borderBottomWidth:2,
+        borderBottomColor:'#484d7f',
+        borderBottomWidth:2,
         borderBottomColor:'#484d7f'
-    },
-    textname:{
-        marginTop:10,
-        fontSize:widthDevice*0.04,
-        color:'#fff',
-        fontFamily:'SairaSemiCondensed-Bold'
     },
     thumbnail:{
         width:widthDevice*0.15,
         height:widthDevice*0.15,
+        borderRadius:5
     },
     text:{
         fontSize:widthDevice*0.04,
         color:'#fff',
         fontFamily:'SairaSemiCondensed-Medium'
-    }
+    },
+    textdate:{
+        fontSize:widthDevice*0.035,
+        color:'#6e6da2',
+        fontFamily:'SairaSemiCondensed-Medium'
+    },
 });

@@ -46,14 +46,15 @@ export default class Detail extends Component {
             visible_sharesheet: false,
             modalTrailerVisible: false,
             refreshing:false,
-            loading:false
+            loading:false,
+            playTrailer:false,
         }
     }
     static navigationOptions = () => ({
         header: null
     })
     _toggleModalTrailer(){
-        this.setState({ modalTrailerVisible: !this.state.modalTrailerVisible });
+        this.setState({ playTrailer: !this.state.playTrailer });
     }
     onCancelShareSheet() {
         console.log("CANCEL")
@@ -120,16 +121,16 @@ export default class Detail extends Component {
                                 <View style={styles.contentfilm}>
                                     <View style={{flex:3,alignItems:'center',justifyContent:'center'}}>
                                         <Icon name="ios-clock-outline" size={30} color="#fff" />
-                                        <Text style={styles.datetext}>Thời lượng</Text>
-                                        <Text style={styles.datetext}>120 Phút</Text>
+                                        <Text style={styles.text}>Thời lượng</Text>
+                                        <Text style={styles.text}>120 Phút</Text>
                                     </View>
                                     <View style={{flex:3,alignItems:'center',justifyContent:'center'}}>
                                         <Icon name="ios-calendar-outline" size={30} color="#fff" />
-                                        <Text style={styles.datetext}>Khởi chiếu</Text>
-                                        <Text style={styles.datetext}>30/07/2018</Text>
+                                        <Text style={styles.text}>Khởi chiếu</Text>
+                                        <Text style={styles.text}>30/07/2018</Text>
                                     </View>
                                     <View style={{flex:4,justifyContent:'center',alignItems:'center'}}>
-                                        <TouchableOpacity activeOpacity={1} onPress={()=> this._toggleModalTrailer() } style={{height:widthDevice/10,}}> 
+                                        <TouchableOpacity activeOpacity={1} onPress={()=> Actions.PlayTrailer() } style={{height:widthDevice/10,}}> 
                                             <LinearGradient colors={['#473d82','#5e4f8b' ]} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={styles.trailerButton}>
                                                 <Text style={styles.trailerButtonText}>Xem Trailer</Text>
                                                 <LinearGradient colors={['rgb(249,159,0)','rgb(219,48,105)' ]} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={styles.trailerIcon}>
@@ -142,37 +143,46 @@ export default class Detail extends Component {
                             </View>
                         </View>
                         {/* <!-- button booking film --> */}
-                        <View style={styles.bookingButtonContainer}>
+                        {/* <!-- section info film --> */}
+                        <LinearGradient colors={['#473d82','#5e4f8b']} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={styles.infofilm}>
                             <TouchableOpacity activeOpacity={1} onPress={() => Actions.BookingDetail({poster:this.props.navigation.state.params.poster}) } style={styles.bookingButton}> 
                                 <LinearGradient colors={['rgb(249,159,0)','rgb(219,48,105)']} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={styles.bookingGradient}>
                                     <Text style={styles.trailerButtonText}>ĐẶT VÉ</Text>
                                 </LinearGradient>
                             </TouchableOpacity>
-                        </View>
-                        
+                            <View style={styles.infofilmRow}>
+                                <View style={styles.infofilmRowLeft}>
+                                    <Text style={styles.text}>Diễn Viên: </Text>
+                                </View>
+                                <View style={styles.infofilmRowRight}>
+                                    <Text style={styles.textdark}>Christoph Lauenstein, Wolfgang  </Text>
+                                </View>
+                            </View>
+                            <View style={styles.infofilmRow}>
+                                <View style={styles.infofilmRowLeft}>
+                                    <Text style={styles.text}>Đạo Diễn: </Text>
+                                </View>
+                                <View style={styles.infofilmRowRight}>
+                                    <Text style={styles.textdark}>Christine Parisse, Anders Mastrup, Emely Christians, Jean-Marie Musique </Text>
+                                </View>
+                            </View>
+                            <View style={styles.infofilmRow}>
+                                <View style={styles.infofilmRowLeft}>
+                                    <Text style={styles.text}>Thể loại: </Text>
+                                </View>
+                                <View style={styles.infofilmRowRight}>
+                                    <Text style={styles.textdark}>Hài Hước </Text>
+                                </View>
+                            </View>
+                        </LinearGradient>
                         {/* <!-- section about film --> */}
                         <LinearGradient colors={['#0f1e2f','#0f1e2f']} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={styles.aboutfilm}>
+                            
 
                         </LinearGradient>
-                         {/* <!-- section info film --> */}
-                         <LinearGradient colors={['#473d82','#5e4f8b']} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={styles.infofilm}>
-
-                        </LinearGradient>
+                         
                     </ScrollView>
                 </MetizContentScreen>
-                {/* <!-- modal trailer film --> */}
-                <Modal isVisible={this.state.modalTrailerVisible}>
-                    <View style={{justifyContent:'center',alignContent:'center',height:widthDevice/2 }}>
-                        <WebView
-                            javaScriptEnabled={true}
-                            source={{ uri:'https://www.youtube.com/embed/Wv28i3zwABI?rel=0&amp;showinfo=0'}} />
-                        <TouchableOpacity  onPress={()=> this._toggleModalTrailer() } style={{height:widthDevice/10,}}> 
-                            <LinearGradient colors={['#473d82','#5e4f8b' ]} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={styles.closetrailerButton}>
-                                <Text style={styles.trailerButtonText}>Hủy</Text>
-                            </LinearGradient>
-                        </TouchableOpacity>
-                    </View>
-                </Modal>
                 {/* <!-- share sheet --> */}
                 <ShareSheet visible={this.state.visible_sharesheet} onCancel={this.onCancelShareSheet.bind(this)}>
                     <MetizShareSheet 
@@ -191,7 +201,7 @@ const styles = StyleSheet.create({
       backgroundColor:'#0f1e2f'
     },
     headerInfo: {
-      height:widthDevice*1.47,
+      height:widthDevice*0.6,
       backgroundColor:'#e9ebee',
       marginTop:(Platform.OS === 'ios') ? -70 : -50,
     },
@@ -204,12 +214,12 @@ const styles = StyleSheet.create({
         zIndex:10
     },
     poster:{
-		width:widthDevice,
-		height:widthDevice*1.47,
+		width:'100%',
+		height:'100%',
 		marginBottom:23
     },
     information:{
-        height:widthDevice/2,
+        height:heightDevice/5,
         flexDirection:'column',
         position:'absolute',
         bottom:0,
@@ -218,7 +228,8 @@ const styles = StyleSheet.create({
     },
     titlefilm:{
         flex:2,
-        justifyContent:'center'
+        justifyContent:'center',
+        alignItems:'center'
     },
     titlefilmtext:{
         paddingHorizontal:20,
@@ -235,7 +246,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         position:'absolute',
         zIndex:100,
-        bottom:0,
+        top:-20,
     },
     bookingGradient:{
         paddingHorizontal:widthDevice/3,
@@ -279,65 +290,35 @@ const styles = StyleSheet.create({
     },
     infofilm:{
         height:widthDevice/2,
+        alignItems:'center',
+        justifyContent:'center',
+        paddingHorizontal:20,
+        paddingTop:40,
+        paddingBottom:10,
     },
     aboutfilm:{
         height:widthDevice/2,
     },
-    time:{
-        flex:1.5,
-        height:widthDevice/8,
-        paddingVertical:8,
+    infofilmRow:{
+        flex:5,
         flexDirection:'row',
-        backgroundColor:'#333'
     },
-    timeItem:{
-        flex:1,
-        flexDirection:'column',
-        margin:1,
-        alignItems:'center',
-        justifyContent:'center'
+    infofilmRowLeft:{
+        flex:3,
+        alignItems:'flex-start'
     },
-    day:{
-        flex:1,
+    infofilmRowRight:{
+        flex:7,
+        alignItems:'flex-start'
     },
-    daytext:{
-		color:'#fff',
-		fontFamily:'SairaSemiCondensed-Medium'
-	},
-	date:{
-		flex:1,
-		width:'50%',
-		height:'50%',
-		backgroundColor:'black',
-		borderRadius:25,
-		justifyContent:'center',
-		alignItems:'center'
-	},
-	datetext:{
-		color:'#fff',
-		fontFamily:'SairaSemiCondensed-Bold'
-	},
-	active:{
-		backgroundColor:'rgb(248,163,17)',
-	},
-    show:{
-        flex:8.5,
-    },
-    showitem:{
-        flex:1,
-        paddingHorizontal:10,
-        paddingVertical:5,
-        borderRadius:4,backgroundColor:'#fff',
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    showtimetext:{
+    text:{
+        fontSize:widthDevice*0.04,
+        color:'#fff',
         fontFamily:'SairaSemiCondensed-Medium'
     },
-    nocontent:{
-        justifyContent:'center',
-        alignItems:'center',
-        position:'absolute',
-        zIndex:10,top:0,bottom:0,right:0,left:0
-    }
+    textdark:{
+        fontSize:widthDevice*0.04,
+        color:'#8b8b8b',
+        fontFamily:'SairaSemiCondensed-Medium'
+    },
 });

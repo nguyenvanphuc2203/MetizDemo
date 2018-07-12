@@ -38,7 +38,9 @@ export default class ControlPanel extends Component{
                 <View style={style.menuList}>
                     <TouchableOpacity style={style.menuItem} activeOpacity={1} onPress={()=> this.props.onClosePanel()}>
                         <View style={style.iconMenu}>
-                            <Icon name="ios-home" size={viewportWidth*0.06} color="#7dd422" />
+                            <View style={style.iconBackground}>
+                                <Icon name="ios-home" size={viewportWidth*0.07} color="#7dd422" />
+                            </View>
                         </View>
                         <View style={style.textMenuContainer}>
                             <Text style={style.TextMenu}>Trang chủ</Text>
@@ -46,7 +48,9 @@ export default class ControlPanel extends Component{
                     </TouchableOpacity>
                     <TouchableOpacity style={style.menuItem} activeOpacity={1} onPress={()=>{ this.props.onClosePanel(); Actions.ShowTimes()} }>
                         <View style={style.iconMenu}>
-                            <Icon name="md-calendar" size={viewportWidth*0.06} color="#f6a624" />
+                            <View style={style.iconBackground}>
+                                <Icon name="md-calendar" size={viewportWidth*0.07} color="#f6a624" />
+                            </View>
                         </View>
                         <View style={style.textMenuContainer}>
                             <Text style={style.TextMenu}>Lịch chiếu</Text>
@@ -54,7 +58,9 @@ export default class ControlPanel extends Component{
                     </TouchableOpacity>
                     <TouchableOpacity style={style.menuItem} activeOpacity={1} onPress={()=>{this.props.onClosePanel(); Actions.MenuFilm() }}>
                         <View style={style.iconMenu}>
-                            <Icon name="ios-film" size={viewportWidth*0.06} color="#4a90e2" />
+                            <View style={style.iconBackground}>
+                                <Icon name="ios-film" size={viewportWidth*0.07} color="#4a90e2" />
+                            </View>
                         </View>
                         <View style={style.textMenuContainer}>
                             <Text style={style.TextMenu}>Phim</Text>
@@ -62,7 +68,9 @@ export default class ControlPanel extends Component{
                     </TouchableOpacity>
                     <TouchableOpacity style={style.menuItem} activeOpacity={1} onPress={()=> this.props.onClosePanel()}>
                         <View style={style.iconMenu}>
-                            <Icon name="md-mail-open" size={viewportWidth*0.06} color="#bd34e0" />
+                            <View style={style.iconBackground}>
+                                <Icon name="md-mail-open" size={viewportWidth*0.07} color="#bd34e0" />
+                            </View>
                         </View>
                         <View style={style.textMenuContainer}>
                             <Text style={style.TextMenu}>Tin tức & Khuyến mãi</Text>
@@ -70,7 +78,9 @@ export default class ControlPanel extends Component{
                     </TouchableOpacity>
                     <TouchableOpacity style={style.menuItem} activeOpacity={1} onPress={()=> this.props.onClosePanel()}>
                         <View style={style.iconMenu}>
-                            <Icon name="logo-rss" size={viewportWidth*0.06} color="#50e3c2" />
+                            <View style={style.iconBackground}>
+                                <Icon name="logo-rss" size={viewportWidth*0.07} color="#50e3c2" />
+                            </View>
                         </View>
                         <View style={style.textMenuContainer}>
                             <Text style={style.TextMenu}>Blog phim</Text>
@@ -78,7 +88,9 @@ export default class ControlPanel extends Component{
                     </TouchableOpacity>
                     <TouchableOpacity style={style.menuItem} activeOpacity={1} onPress={()=> this.props.onClosePanel()}>
                         <View style={style.iconMenu}>
-                            <Icon name="ios-notifications" size={viewportWidth*0.06} color="#b8e985" />
+                            <View style={style.iconBackground}>
+                                <Icon name="ios-notifications" size={viewportWidth*0.07} color="#b8e985" />
+                            </View>
                         </View>
                         <View style={style.textMenuContainer}>
                             <Text style={style.TextMenu}>Thông báo</Text>
@@ -86,18 +98,12 @@ export default class ControlPanel extends Component{
                     </TouchableOpacity>
                     <TouchableOpacity style={style.menuItem} activeOpacity={1} onPress={()=>{ this.props.onClosePanel(); Actions.About() }}>
                         <View style={style.iconMenu}>
-                            <Icon name="ios-information-circle" size={viewportWidth*0.06} color="#45bfff" />
+                            <View style={style.iconBackground}>
+                                <Icon name="ios-information-circle" size={viewportWidth*0.07} color="#45bfff" />
+                            </View>
                         </View>
                         <View style={style.textMenuContainer}>
                             <Text style={style.TextMenu}>Về Metiz Cinema</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={style.menuItem} activeOpacity={1} onPress={()=>{ this.props.onClosePanel(); } }>
-                        <View style={style.iconMenu}>
-                            <Icon name="ios-log-out" size={viewportWidth*0.06} color="#FFF" />
-                        </View>
-                        <View style={style.textMenuContainer}>
-                            <Text style={style.TextMenu}>Đăng Xuất</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -105,7 +111,12 @@ export default class ControlPanel extends Component{
 
                 </View>
                 <View style={style.logout}>
-
+                    <View style={style.textLogoutContainer}>
+                        <Text style={style.profileText}>Đăng Xuất</Text>
+                    </View>
+                    <View style={style.iconLogout}>
+                        <Icon name="md-log-out" size={viewportWidth*0.07} color="#FFF" />
+                    </View>
                 </View>
             </View>
         )
@@ -150,32 +161,50 @@ const style = StyleSheet.create({
         fontFamily:'SairaSemiCondensed-Medium'
     },
     menuList:{
-        flex:6.5,
-        backgroundColor:'#fff'
+        flex:6,
+        backgroundColor:'#222',
     },
     clear:{
         backgroundColor:'#222',
-        flex:1
+        flex:2
     },
     logout:{
-        backgroundColor:'#222',
-        flex:1
+        backgroundColor:'#0c0d0e',
+        flex:0.8,
+        flexDirection:'row',
+    },
+    iconLogout:{
+        flex:2,
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    textLogoutContainer:{
+        justifyContent:'center',
+        flex:8,
+        paddingLeft:10,
+        alignItems:'center',
     },
     menuItem:{
         flex:1,
-        paddingHorizontal:5,
+        marginHorizontal:15,
         paddingVertical:4,
         flexDirection:'row',
-        backgroundColor:'#222'
+        backgroundColor:'#222',
+        borderBottomWidth:1,
+        borderBottomColor:'#3b3732'
     },
     iconMenu:{
         flex:2,
-        marginHorizontal:15,
-        marginVertical:5,
-        borderRadius:5,
-        alignItems:'center',
+        alignItems:'flex-start',
         justifyContent:'center',
-        backgroundColor:'#484c4b'
+    },
+    iconBackground:{
+        borderRadius:5,
+        width:viewportWidth*0.1,
+        height:viewportWidth*0.1,
+        backgroundColor:'#484c4b',
+        justifyContent:'center',
+        alignItems:'center',
     },
     textMenuContainer:{
         justifyContent:'center',

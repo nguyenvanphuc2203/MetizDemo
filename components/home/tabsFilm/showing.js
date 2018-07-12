@@ -54,6 +54,16 @@ class Showing extends React.Component {
             })
             .catch((error) => {
                 console.error(error);
+                Alert.alert(
+                    'Time out',
+                    'Vui lòng kiểm tra kết nối mạng?', [{
+                        text: 'Ok',
+                        onPress: () => console.log('Cancel Pressed'),
+                        style: 'cancel'
+                    } ], {
+                        cancelable: false
+                    }
+                )
             });
         }
         else
@@ -74,10 +84,10 @@ class Showing extends React.Component {
         // render item of slider film 
         var poster = 'https://image.tmdb.org/t/p/w500'+item.poster_path;
         return (
-            <TouchableOpacity activeOpacity={1} onPress={()=>{  }}>
+            <TouchableOpacity activeOpacity={1} onPress={()=>{ Actions.Detail({id:item.id,poster:poster}) }}>
                 <View style={style.item}>
                     <Image source={{uri:poster}} style={style.poster} />
-                    <TouchableOpacity activeOpacity={1} disabled={this.state.isDisableButtonRegister} onPress={()=>{ Actions.Detail({id:item.id,poster:poster}) }} style={style.TouchableDatve}> 
+                    <TouchableOpacity activeOpacity={1} disabled={this.state.isDisableButtonRegister} onPress={()=>{ Actions.BookingDetail({id:item.id,poster:poster}) }} style={style.TouchableDatve}> 
                         <LinearGradient colors={['rgb(249,159,0)','rgb(219,48,105)' ]} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={style.buttonDatve}>
                             <Text style={style.title}>ĐẶT VÉ</Text>
                         </LinearGradient>
@@ -88,7 +98,7 @@ class Showing extends React.Component {
     }
     render() {
         return (
-            <View >
+            <View style={style.container}>
                 <Carousel
                     layout={'default'}
                     ref={(c) => { this._carousel = c; }}
@@ -102,7 +112,7 @@ class Showing extends React.Component {
                     //enableMomentum={true}
                     enableSnap={true}
                     inactiveSlideScale={0.95}
-                    inactiveSlideOpacity={0.6}
+                    inactiveSlideOpacity={0.8}
                     onSnapToItem={(index) => this.setState({currentSwiperFilm:index}) }
                 />
                 <View style={style.infoFilm}>
@@ -118,6 +128,9 @@ class Showing extends React.Component {
 }
 
 const style = StyleSheet.create({
+    container:{
+        flex:1
+    },
 	item:{
 		width:viewportWidth*0.575,
 		marginTop:13,
@@ -137,15 +150,16 @@ const style = StyleSheet.create({
 	},
 	title:{
 		color:'#fff',
-		padding:2,
-		fontWeight:'bold',
+        padding:2,
+        fontFamily:'SairaSemiCondensed-Bold',
 		fontSize:viewportWidth*0.035,
 		justifyContent:'center'
 	},
 	description:{
 		color:'#e9ebee',
 		padding:2,
-		fontSize:viewportWidth*0.03
+		fontSize:viewportWidth*0.03,
+        fontFamily:'SairaSemiCondensed-Medium'
 	},
 	TouchableDatve:{
 		flex:1,

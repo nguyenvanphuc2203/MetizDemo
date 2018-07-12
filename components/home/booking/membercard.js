@@ -13,14 +13,14 @@ import {
     Image,
     Dimensions,
 } from 'react-native';
-import MetizNavigation from '../../../elements/metizNavigation';
-import MetizContentScreen from '../../../elements/metizContentScreen';
-import MetizLoading from '../../../elements/metizLoading';
+import MetizNavigation from '../../elements/metizNavigation';
+import MetizContentScreen from '../../elements/metizContentScreen';
+import MetizLoading from '../../elements/metizLoading';
 
 const { width: widthDevice, height: heightDevice } = Dimensions.get('window');
 /* get width, height */
 
-export default class MemberCard extends Component {
+export default class BookingMemberCard extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -38,7 +38,7 @@ export default class MemberCard extends Component {
     }
     render(){
         return (
-            <View style={style.container}>
+            <LinearGradient colors={['#4b4476','#2c5776' ]}  style={style.container}>
                 <MetizNavigation
                     title={'THẺ THÀNH VIÊN'}
                     actionButtonLeft={()=> Actions.pop()}
@@ -46,37 +46,38 @@ export default class MemberCard extends Component {
                 />
                 <MetizContentScreen>
                     <View style={style.main}>
-                    <ScrollView >
-                        <LinearGradient colors={['rgb(116,17,203)','rgb(37,117,252)' ]} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={style.info}>
-                            <Image source={{uri:'https://i.imgur.com/DikeBdY.png'}} style={style.avatar} />
-                            <Text style={style.textname}>PHAN VĂN QUÂN </Text>
-                        </LinearGradient>
-
-                        {/* <!-- Link member card.. --> */}
-                        <View style={style.notification}>
-                            <Text style={style.notificationText}>Thông báo: bạn chưa đăng ký thẻ thành viên hoặc có thẻ thành viên mà chưa liên kết với tài khoản!</Text>
-                            <Text style={[style.notificationText,{marginTop:10}]}>Nếu bạn đã có thẻ vui lòng nhập mã thẻ vào ô bên dưới để liên kết với tài khoản.</Text>
-                        </View>
-                        <View style={style.inputRow}>
-                            <TextInput
-                                style={style.textInput}
-                                onChangeText={(password) => this.setState({password})}
-                                underlineColorAndroid="transparent"
-                                placeholder="Mã thẻ thành viên"
-                                placeholderTextColor="rgb(224,228,233)"
-                            />
-                        </View>
-                        <View style={style.buttonRow}>
-                            <TouchableOpacity  onPress={()=>{  }} style={{flex:1,height:widthDevice/9,}}> 
-                                <LinearGradient colors={['rgb(249,159,0)','rgb(219,48,105)' ]} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={style.saveButton}>
-                                    <Text style={style.saveButtonText}>LIÊN KẾT</Text>
-                                </LinearGradient>
-                            </TouchableOpacity>
-                        </View>
-                    </ScrollView>
+                        <ScrollView >
+                            <LinearGradient colors={['#514ae9','#af4ee8' ]} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={style.card}>
+                                <Image source={require('../../libs/images/logo.png')} style={style.avatar} />
+                                <View style={{alignItems:'flex-end',padding:20}}>
+                                    <Text style={style.textname}>PHAN VĂN QUÂN </Text>
+                                </View>
+                            </LinearGradient>
+                            
+                            {/* <!-- Link member card.. --> */}
+                            <View style={style.notification}>
+                                <Text style={style.notificationText}>Quý khách nhập thẻ thành viên để nhận điểm thưởng. Nếu chưa có vui lòng để trống hoặc liên hệ trực tiếp với quầy để tạo mới.</Text>
+                            </View>
+                            <View style={style.inputRow}>
+                                <TextInput
+                                    style={style.textInput}
+                                    onChangeText={(password) => this.setState({password})}
+                                    underlineColorAndroid="transparent"
+                                    placeholder="Mã thẻ thành viên"
+                                    placeholderTextColor="rgb(224,228,233)"
+                                />
+                            </View>
+                            <View style={style.buttonRow}>
+                                <TouchableOpacity  onPress={()=>{  }} style={{flex:1,height:widthDevice/9,}}> 
+                                    <LinearGradient colors={['rgb(249,159,0)','rgb(219,48,105)' ]} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={style.saveButton}>
+                                        <Text style={style.saveButtonText}>TIẾP TỤC</Text>
+                                    </LinearGradient>
+                                </TouchableOpacity>
+                            </View>
+                        </ScrollView>
                     </View>
                 </MetizContentScreen>
-            </View>
+            </LinearGradient>
         )
     }
 }
@@ -90,15 +91,25 @@ const style = StyleSheet.create({
         flexDirection:'column',
     },
     avatar:{
+        margin:10,
         borderRadius:widthDevice*0.1,
         width:widthDevice*0.2,
         height:widthDevice*0.2,
     },
-    info:{
-        width:widthDevice,
+    card:{
+        margin:20,
+        borderRadius:20,
+        width:widthDevice-40,
         height:widthDevice*0.5,
-        justifyContent:'center',
-        alignItems:'center'
+        shadowColor: '#000000',
+		shadowOffset: {
+			width: 0,
+			height: 1
+		},
+		shadowRadius: 3,
+		shadowOpacity: 0.5,
+		overflow:'visible',
+		elevation: 2,
     },
     itemleft:{
         flex:4,

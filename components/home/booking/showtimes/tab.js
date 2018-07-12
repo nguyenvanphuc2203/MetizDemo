@@ -82,7 +82,7 @@ export default class TimesRooms extends Component{
 					}
 				}
 			})
-			arr.push(subarr)
+			if ( subarr.length > 0 ) arr.push(subarr)
 			// set data after format to state 
 			this.setState({dataformat:arr,loading:false});
 			console.log(date,this.state.dataformat)
@@ -112,7 +112,7 @@ export default class TimesRooms extends Component{
 			'Metiz Cinema',
 			'Phim không dành cho khán giả dưới 13 tuổi!.', [{
 				text: 'Đồng ý',
-				onPress: () => console.log('Đồng ý'),
+				onPress: () => Actions.BookingSeat(),
 				style: 'OK'
 			} ], {
 				cancelable: false
@@ -133,6 +133,10 @@ export default class TimesRooms extends Component{
 					<View style={style.day}><Text style={style.datetext}> { `${getNextDay(this.state.currentday)} - ${getNextDateFormat(this.state.currentday)}`}</Text></View>
 				</LinearGradient>
 				<LinearGradient colors={['rgb(78,67,118)','rgb(43,88,118)' ]}  style={style.show}>
+					{ this.state.dataformat.length == 0 && 
+					<View style={style.emptyShowtimes}>
+						<Text style={style.daytext}>Không có xuất chiếu!</Text>   
+					</View>}
 					<ScrollView
 						refreshControl={
 							<RefreshControl
@@ -154,7 +158,7 @@ export default class TimesRooms extends Component{
 										<View style={style.headbox}>
 												
 											<View style={style.infofilm}>
-												<Text style={style.moviesname}>{item[0].MOVIE_NAME_VN.toUpperCase()} </Text>
+												<Text style={style.moviesname}>{ typeof(item[0]) != 'undefined' ? item[0].MOVIE_NAME_VN.toUpperCase() : 'Không tên'} </Text>
 												<Text style={style.moviesdes}>Thời lượng 120 - cấm trẻ dưới 16 tuổi </Text>
 											</View>
 										</View>
@@ -230,19 +234,23 @@ const style = StyleSheet.create({
 		elevation: 3,
 	},
 	moviesname:{
+		marginTop:5,
 		fontFamily:"SairaSemiCondensed-Bold",
-		marginTop:10,
+		fontSize:widthDevice*0.035,
 		paddingLeft:widthDevice/3.5
 	},
 	moviesdes:{
-		marginTop:10,
+		marginTop:5,
+		fontFamily:"SairaSemiCondensed-Medium",
+		fontSize:widthDevice*0.035,
 		paddingLeft:widthDevice/3.5,
 		fontSize:12
 	},
 	infofilm:{
 		flex:7,
 		paddingHorizontal:5,
-		flexDirection:'column'
+		flexDirection:'column',
+		justifyContent:'center'
 	},
 	timetext:{
 		fontFamily:"SairaSemiCondensed-Medium",
@@ -267,6 +275,7 @@ const style = StyleSheet.create({
 		justifyContent:'center'
 	},
 	daytext:{
+		fontSize:widthDevice*0.035,
 		color:'#fff',
 		fontFamily:'SairaSemiCondensed-Bold'
 	},
@@ -289,6 +298,11 @@ const style = StyleSheet.create({
 	show:{
 		flex:9,
 		position: "relative"
-	}
+	},
+	emptyShowtimes:{
+		flex:1,
+        justifyContent:'center',
+        alignItems:'center',
+    }
 })
 	

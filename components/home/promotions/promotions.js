@@ -21,19 +21,25 @@ export default class PromotionsHome extends Component {
             promotions:[
                 {
                     title:'khuyến mãi khủng tết',
-                    thumbnail:'https://thumb.ibb.co/hGJUkT/banner_film2.jpg',
+                    thumbnail:'https://i.imgur.com/3lsxy4c.png',
                     open:'12/02/2018',
                     close:'15/01/2018'
                 },
                 {
                     title:'khuyến mãi khủng tết',
-                    thumbnail:'https://thumb.ibb.co/hGJUkT/banner_film2.jpg',
+                    thumbnail:'https://i.imgur.com/2ZdQX08.png',
                     open:'12/02/2018',
                     close:'15/01/2018'
                 },
                 {
                     title:'khuyến mãi khủng tết',
-                    thumbnail:'https://thumb.ibb.co/hGJUkT/banner_film2.jpg',
+                    thumbnail:'https://i.imgur.com/3lsxy4c.png',
+                    open:'12/02/2018',
+                    close:'15/01/2018'
+                },
+                {
+                    title:'khuyến mãi khủng tết',
+                    thumbnail:'https://i.imgur.com/3lsxy4c.png',
                     open:'12/02/2018',
                     close:'15/01/2018'
                 },
@@ -43,18 +49,6 @@ export default class PromotionsHome extends Component {
                     open:'12/02/2018',
                     close:'15/01/2018'
                 },
-                {
-                    title:'khuyến mãi khủng tết',
-                    thumbnail:'https://thumb.ibb.co/mgA9kT/banner_film1.jpg',
-                    open:'12/02/2018',
-                    close:'15/01/2018'
-                },
-                {
-                    title:'khuyến mãi khủng tết',
-                    thumbnail:'https://thumb.ibb.co/hGJUkT/banner_film2.jpg',
-                    open:'12/02/2018',
-                    close:'15/01/2018'
-                }
             ]
         }
     }
@@ -65,18 +59,18 @@ export default class PromotionsHome extends Component {
                     itemDimension={130}
                     items={this.state.promotions.slice(0,2)}
                     renderItem={item => (
-                        <LinearGradient colors={['rgb(249,159,0)','rgb(219,48,105)' ]} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={style.item}>
+                        <View style={style.item}>
                             <View style={style.thumbnail}>
                                 <Image
                                     style={{width:'100%',height:'100%',borderRadius:3}}
-                                    source={{uri:'https://i.imgur.com/3lsxy4c.png'}}
+                                    source={{uri:item.thumbnail}}
                                 />
                             </View>
                             <View style={style.content}>
                                 <Text style={style.title}>{item.title}</Text>
                                 <Text style={style.time}>{item.open} ~ {item.close}</Text>
                             </View>
-                        </LinearGradient>
+                        </View>
                     )}
                 />
                 <GridView
@@ -88,7 +82,7 @@ export default class PromotionsHome extends Component {
                             <View style={style.thumbnail}>
                                 <Image
                                     style={{width:'100%',height:'100%',borderRadius:3}}
-                                    source={{uri:'https://i.imgur.com/3lsxy4c.png'}}
+                                    source={{uri:item.thumbnail}}
                                 />
                             </View>
                             <View style={style.content}>
@@ -107,7 +101,7 @@ export default class PromotionsHome extends Component {
                             <View style={style.thumbnail}>
                                 <Image
                                     style={{width:'100%',height:'100%',borderRadius:3}}
-                                    source={{uri:'https://i.imgur.com/3lsxy4c.png'}}
+                                    source={{uri:item.thumbnail}}
                                 />
                             </View>
                             <View style={style.content}>
@@ -132,7 +126,7 @@ const style = StyleSheet.create({
         flexDirection:'column',
         margin:0,
         borderRadius:5,
-        backgroundColor:'#ff5400',
+        backgroundColor:'#0e1944',
         height:viewportWidth*0.35,
     },
     thumbnail:{
@@ -147,13 +141,13 @@ const style = StyleSheet.create({
         borderBottomRightRadius:5
     },
     title:{
-        color:'#333',
-        fontSize:viewportWidth*0.03,
-        color:'#fff'
+        fontSize:viewportWidth*0.035,
+        color:'#fff',
+        fontFamily:'SairaSemiCondensed-Medium'
     },
     time:{
-        color:'#333',
-        fontSize:viewportWidth*0.025,
-        color:'#fff'
+        fontSize:viewportWidth*0.03,
+        color:'#fff',
+        fontFamily:'SairaSemiCondensed-Medium'
     }
 })

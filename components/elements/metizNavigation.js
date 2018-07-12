@@ -65,7 +65,7 @@ const style = StyleSheet.create({
     },
     nav_back:{
         flex:1,
-        paddingLeft:4,
+        paddingLeft:6,
         justifyContent:'center',
         alignItems:'center'
     },
@@ -85,7 +85,7 @@ const style = StyleSheet.create({
     },
     nav_menu:{
         flex:1,
-        paddingLeft:4,
+        paddingLeft:6,
         justifyContent:'center',
         alignItems:'center'
     },
